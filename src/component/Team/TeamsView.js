@@ -43,7 +43,7 @@ const TeamsView = () => {
               <td>{team.teamName}</td>
               <td>{team.averageScore}</td>
               <td className="mx-2">
-                <Link className="btn btn-info" to={`/team-profile/${team.id}`}><FaEye/></Link>
+                <Link className="btn btn-info" to={`/view-scores/${team.id}`}><FaEye/></Link>
               </td>
               <td className="mx-2">
                 <Link className="btn btn-warning" to={`/edit-team/${team.id}`}><FaEdit/></Link>

@@ -7,6 +7,8 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./Home";
 import AddTeam from "./component/Team/AddTeam";
 import EditTeam from "./component/Team/EditTeam";
+import ScoresView from "./component/Score/ScoresView";
+import AddScore from "./component/Score/AddScore";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route exact path="/view-leaderboard" element={<TeamsView />}></Route>
           <Route exact path="/add-team" element={<AddTeam />}></Route>
           <Route exact path="/edit-team/:id" element={<EditTeam />}></Route>
+          <Route exact path="/view-scores/:id" element={<ScoresView />}></Route>
+          <Route exact path="/add-score" element={<AddScore />}></Route> 
         </Routes>
       </Router>
     </main>

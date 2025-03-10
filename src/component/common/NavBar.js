@@ -28,8 +28,13 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={"/add-team"}>
-                Add new Team
+                Add a New Team
               </Link>
+            </li>
+            <li className="nav-time">
+                <Link className="nav-link" to={"/add-score"}>
+                Add a Score 
+                </Link>
             </li>
           </ul>
         </div>
