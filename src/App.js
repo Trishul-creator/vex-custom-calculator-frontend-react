@@ -9,6 +9,7 @@ import AddTeam from "./component/Team/AddTeam";
 import EditTeam from "./component/Team/EditTeam";
 import ScoresView from "./component/Score/ScoresView";
 import AddScore from "./component/Score/AddScore";
+import EditScores from "./component/Score/EditScores";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/edit-team/:id" element={<EditTeam />}></Route>
           <Route exact path="/view-scores/:id" element={<ScoresView />}></Route>
           <Route exact path="/add-score" element={<AddScore />}></Route> 
+          <Route exact path="/edit-score/:id" element={<EditScores />}></Route>
         </Routes>
       </Router>
     </main>

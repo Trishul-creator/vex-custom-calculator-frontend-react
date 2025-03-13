@@ -9,18 +9,19 @@ const AddScore = () => {
 
   useEffect(() => {
     loadTeams();
-  }, []);
+  }, [])
 
   const loadTeams = async () => {
-    const result = await axios.get("http://localhost:8080/api/teams");
+    const result = await axios.get(`http://localhost:8080/api/teams`);
     setTeams(result.data);
-  };
+
+  }
 
   const [team, setTeam] = React.useState({
     teamName: "",
   });
 
-  const { teamName } = team;
+  const {teamName } = team;
 
   const handleTeamInputChange = (e) => {
     setTeam({ ...team, [e.target.name]: e.target.value });
@@ -31,6 +32,7 @@ const AddScore = () => {
     redBlocksScored: 0,
     purpleBlocksScored: 0,
     greenBlocksScored: 0,
+    parkingStatus: '',
   });
 
   const { round, redBlocksScored, purpleBlocksScored, greenBlocksScored } =
@@ -42,8 +44,8 @@ const AddScore = () => {
 
   const saveScore = async (e) => {
     e.preventDefault();
-    await axios.post(`http://localhost:8080/api/teams/${team}/scores`, score);
-    navigate("/view-scores");
+    await axios.post(`http://localhost:8080/api/teams/${teamName}/scores`, score);
+    navigate("/view-leaderboard");
   };
 
   return (
@@ -51,25 +53,23 @@ const AddScore = () => {
       <h2 className="mt-5">Add Score</h2>
       <form onSubmit={(e) => saveScore(e)}>
         <div className="input-group mb-5">
-          <label for="exampleFormControlSelect1">
-            Team:
+          <label className="input-group-text" htmlFor="teamName"> Team: </label>
               <select
                 className="form-select"
                 required
                 value={teamName}
                 name="teamName"
-                onChange={handleTeamInputChange}
+                onChange={(e) => handleTeamInputChange(e)}
               >
                 <option disabled value="">
                   Choose Team...
                 </option>
                 {teams.map((team) => (
-                <>
-                <option>{team.teamName}</option>
-                </>
+                <option key={team.id}>
+                  {team.teamName}
+                </option>
                 ))}
               </select>
-          </label>
         </div>
         <div className="input-group mb-5">
           <label className="input-group-text" htmlFor="round">
@@ -129,6 +129,51 @@ const AddScore = () => {
             onChange={(e) => handleScoreInputChange(e)}
           />
         </div>
+
+      <div className="form-check mb-5 d-flex justify-content-between" >
+  <div className="form-check" onChange={(e) => handleScoreInputChange(e)}>
+    <input
+      type="radio"
+      className="form-check-input"
+      name="parkingStatus"
+      id="fullyParked"
+      required
+      value="Fully Parked"
+    />
+    <label className="form-check-label" htmlFor="fullyParked">
+      Fully Parked
+    </label>
+  </div>
+
+  <div className="form-check">
+    <input
+      type="radio"
+      className="form-check-input"
+      name="parkingStatus"
+      id="partiallyParked"
+      value="Partially Parked"
+    />
+    <label className="form-check-label" htmlFor="partiallyParked">
+      Partially Parked
+    </label>
+  </div>
+
+  <div className="form-check">
+    <input
+      type="radio"
+      className="form-check-input"
+      name="parkingStatus"
+      id="notParked"
+      value="Not Parked"
+    />
+    <label className="form-check-label" htmlFor="notParked">
+      Not Parked
+    </label>
+  </div>
+</div>
+
+
+
 
         <div className="row mb-5">
           <div className="col-sm-2">
