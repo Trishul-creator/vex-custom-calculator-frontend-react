@@ -21,6 +21,8 @@ const AddScore = () => {
     teamName: "",
   });
 
+  const[totalScoreNumber, setTotalScoreNumber] = React.useState(0);  
+
   const {teamName } = team;
 
   const handleTeamInputChange = (e) => {
@@ -38,9 +40,18 @@ const AddScore = () => {
   const { round, redBlocksScored, purpleBlocksScored, greenBlocksScored } =
     score;
 
+
+
+
   const handleScoreInputChange = (e) => {
+    
     setScore({ ...score, [e.target.name]: e.target.value });
+   
   };
+
+
+
+
 
   const saveScore = async (e) => {
     e.preventDefault();
@@ -82,6 +93,7 @@ const AddScore = () => {
             id="round"
             required
             value={round}
+            min="0"
             onChange={(e) => handleScoreInputChange(e)}
           />
         </div>
@@ -95,6 +107,8 @@ const AddScore = () => {
             className="form-control col-sm-6"
             name="redBlocksScored"
             id="redBlocksScored"
+            min="0"
+            max="2"
             required
             value={redBlocksScored}
             onChange={(e) => handleScoreInputChange(e)}
@@ -110,6 +124,8 @@ const AddScore = () => {
             className="form-control col-sm-6"
             name="purpleBlocksScored"
             id="purpleBlocksScored"
+            min="0"
+            max="8"
             required
             value={purpleBlocksScored}
             onChange={(e) => handleScoreInputChange(e)}
@@ -124,6 +140,8 @@ const AddScore = () => {
             className="form-control col-sm-6"
             name="greenBlocksScored"
             id="greenBlocksScored"
+            min="0"
+            max="12"
             required
             value={greenBlocksScored}
             onChange={(e) => handleScoreInputChange(e)}
@@ -137,7 +155,6 @@ const AddScore = () => {
       className="form-check-input"
       name="parkingStatus"
       id="fullyParked"
-      required
       value="Fully Parked"
     />
     <label className="form-check-label" htmlFor="fullyParked">
@@ -145,7 +162,7 @@ const AddScore = () => {
     </label>
   </div>
 
-  <div className="form-check">
+  <div className="form-check" onChange={(e) => handleScoreInputChange(e)}>
     <input
       type="radio"
       className="form-check-input"
@@ -158,7 +175,7 @@ const AddScore = () => {
     </label>
   </div>
 
-  <div className="form-check">
+  <div className="form-check" onChange={(e) => handleScoreInputChange(e)}>
     <input
       type="radio"
       className="form-check-input"
@@ -171,6 +188,8 @@ const AddScore = () => {
     </label>
   </div>
 </div>
+
+<p class="font-weight-bold">Total Score is {totalScoreNumber}</p>
 
 
 

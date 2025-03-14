@@ -33,8 +33,9 @@ const ScoresView = () => {
             <th>Red Blocks</th>
             <th>Purple Blocks</th>
             <th>Green Blocks</th>
+            <th>Parking Status</th>
             <th>Total Score</th>
-            <th colSpan="2">Actions</th>
+            <th colSpan="2">Actions</th>x
           </tr>
         </thead>
 
@@ -45,6 +46,7 @@ const ScoresView = () => {
               <td>{score.redBlocksScored}</td>
               <td>{score.purpleBlocksScored}</td>
               <td>{score.greenBlocksScored}</td>
+              <td>{score.parkingStatus}</td>
               <td>{score.totalScore}</td>
               <td className="mx-2">
                 <Link className="btn btn-warning" to={`/edit-score/${score.id}`}>
